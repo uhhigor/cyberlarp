@@ -1,0 +1,145 @@
+table, tr, th, td {
+  border-style: solid;
+  border-collapse: collapse;
+  border-width: 0.2vh;
+  text-align: right;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 2.5vh;
+  padding: 1vh;
+  background-color: rgb(25, 54, 54);
+}
+
+#activeContracts td {
+  background-color: rgb(157, 23, 23);
+  text-align: right;
+  font-size:x-small;
+}
+
+#completedContracts td {
+  background-color: rgb(38, 147, 72);
+  font-size:x-small;
+
+}
+
+#activeContracts, #completedContracts {
+  margin-left: 55%;
+  margin-top:2vh;
+}
+
+h1 {
+  font-size:6vh;
+  text-align: left;
+  letter-spacing: 1.5vh;
+  width: fit-content;
+  background-color: rgb(25, 54, 54);
+  padding-left: 5vh;
+}
+
+html {
+  font-family: monospace;
+  color: rgb(101, 240, 240);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.3),
+             0 0 5px rgba(0, 0, 0, 0.3),
+             0 0 10px rgba(0, 0, 0, 0.3),
+             0 0 20px rgba(0, 0, 0, 0.3),
+             0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+#datatable {
+  margin-top: 15%;
+  width: 80%;
+}
+
+#datatable td {
+  margin-top: 20%;
+}
+
+form {
+  text-align: center;
+}
+
+#loginForm {
+  margin-top: 50%;
+  text-align: center;
+}
+
+input{
+  width: 30vh;
+  height: 10vh;
+  font-size: larger;
+}
+
+#menu {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+.cyberpunk-button img {
+  width: 100%;
+  height: 100%;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  height: 100vh;
+  background: linear-gradient(to bottom, #940530, #060117);
+  background-repeat:no-repeat;
+}
+
+button {
+  all: unset;
+}
+
+.cyberpunk-button {
+  background-color: rgb(25, 54, 54);
+  color: rgb(101, 240, 240);    
+  border-radius: 0.2vh;
+  border-color: rgb(101, 240, 240);
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 5%;
+}
+
+.cyberpunk-input {
+  background-color: rgb(25, 54, 54);
+  color: rgb(101, 240, 240);
+  width: 12vh;
+  height: 5vh;
+  text-align: center;
+  font-weight: bold;
+}
+
+#dialogOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.dialogBox {
+  background-color: rgb(11, 23, 23);
+  width: 80%;
+  height: 70%;
+  margin: 25% auto;
+  padding: 2vh;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  font-size: smaller;
+  text-align: left;
+  overflow: scroll;
+}
+
+#closeDialog {
+  margin-top: 10px;
+}

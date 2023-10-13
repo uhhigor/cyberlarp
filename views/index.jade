@@ -1,0 +1,56 @@
+extends layout
+
+block content
+    #dialogOverlay
+        .dialogBox#DBdescription(style="display: none")
+                h2 #{user.characterName}
+                p #{user.description}
+                button(value="closeDialog", class="cyberpunk-button", style="width: 12vh;") X
+        .dialogBox#DBteam(style="display: none")
+                h2 #{user.teamID}
+                p #{user.teamID}
+                button(value="closeDialog", class="cyberpunk-button", style="width: 12vh;") X
+        .dialogBox#DBstyle(style="display: none")
+                h2 #{user.styleID}
+                p #{user.styleID}
+                button(value="closeDialog", class="cyberpunk-button", style="width: 12vh;") X
+    .contentBox#CBdata()
+        h1 PER
+            br 
+            | SON
+            br
+            | AL
+        table#datatable 
+            tr
+                td 
+                    button(value="DBdescription") #{user.characterName}
+            tr
+                td 
+                    button(value="DBteam") #{user.teamID}
+            tr
+                td 
+                    button(value="DBstyle") #{user.styleID}
+    .contentBox#CBbank(style="display: none")
+        h1 TRAN 
+            br
+            | SFER
+        h2 BALANS: E$ 
+            span#balance 
+        textbox(name="fromAccount", value=user.bankAccount , class="cyberpunk-input")
+        img(src="/images/arrowto.svg")
+        | #
+        textbox(name="toAccount", placeholder="0000", class="cyberpunk-input")
+        br
+        br
+        textbox(name="amount", inputmode="numeric", class="cyberpunk-input")
+        button SEND
+    .contentBox#CBquests(style="display: none")
+    #menu 
+        button(class="cyberpunk-button")
+        button(class="cyberpunk-button", value="CBdata")
+            img(src="/images/disk.svg")
+        button(class="cyberpunk-button", value="CBbank")
+            img(src="/images/bank.svg")
+        button(class="cyberpunk-button", value="CBquests")
+            img(src="/images/quests.svg")
+        button(class="cyberpunk-button")

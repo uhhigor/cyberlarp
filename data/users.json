@@ -1,0 +1,22 @@
+{
+    "user": [
+        {
+            "id": 123456,
+            "player": "Name and surname",
+            "characterName": "character name and surname",
+            "description": "Example character description",
+            "teamID": 1,
+            "styleID": 1,
+            "bankAccountID": "#1234"
+        },
+        {
+            "id": 654321,
+            "player": "Name2 and surname2",
+            "characterName": "character2 name and surname",
+            "description": "Example 2character description2",
+            "teamID": 1,
+            "styleID": 1,
+            "bankAccountID": "#1232"
+        }
+    ]
+}
