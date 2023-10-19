@@ -2,9 +2,9 @@
     "user": [
         {
             "id": 123456,
-            "player": "Name and surname",
-            "characterName": "character name and surname",
-            "description": "Example character description",
+            "player": "Marek Towarek",
+            "characterName": "Marcus Romantico",
+            "description": "Jesteś bogiem seksapilu. Prawdziwą bestią w łózku. Żadna kobieta nie ma przed tobą tajemnic.",
             "teamID": 1,
             "styleID": 1,
             "bankAccountID": "#1234"

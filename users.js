@@ -7,7 +7,6 @@ module.exports = {
 async function getUserByID(id) {
     try {
         const userData = await db.getUsersData();
-        console.log("Users data ggg");
         for(const user of userData) {
             if(user.id == id) {
                 return user;

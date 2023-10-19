@@ -1,3 +1,13 @@
+body {
+  font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
+  color: rgb(101, 240, 240);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.3),
+             0 0 5px rgba(0, 0, 0, 0.3),
+             0 0 10px rgba(0, 0, 0, 0.3),
+             0 0 20px rgba(0, 0, 0, 0.3),
+             0 0 30px rgba(0, 0, 0, 0.3);
+}
+
 table, tr, th, td {
   border-style: solid;
   border-collapse: collapse;
@@ -36,16 +46,6 @@ h1 {
   padding-left: 5vh;
 }
 
-html {
-  font-family: monospace;
-  color: rgb(101, 240, 240);
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.3),
-             0 0 5px rgba(0, 0, 0, 0.3),
-             0 0 10px rgba(0, 0, 0, 0.3),
-             0 0 20px rgba(0, 0, 0, 0.3),
-             0 0 30px rgba(0, 0, 0, 0.3);
-}
-
 #datatable {
   margin-top: 15%;
   width: 80%;
@@ -60,11 +60,11 @@ form {
 }
 
 #loginForm {
-  margin-top: 50%;
+  margin-top: 40%;
   text-align: center;
 }
 
-input{
+input {
   width: 30vh;
   height: 10vh;
   font-size: larger;
@@ -78,7 +78,7 @@ input{
   bottom: 0;
 }
 
-.cyberpunk-button img {
+.menu-button img {
   width: 100%;
   height: 100%;
 }
@@ -96,25 +96,41 @@ body {
 
 button {
   all: unset;
-}
-
-.cyberpunk-button {
   background-color: rgb(25, 54, 54);
   color: rgb(101, 240, 240);    
   border-radius: 0.2vh;
   border-color: rgb(101, 240, 240);
+}
+
+.menu-button {
   flex-grow: 1;
   flex-basis: 0;
   padding: 5%;
 }
 
-.cyberpunk-input {
-  background-color: rgb(25, 54, 54);
-  color: rgb(101, 240, 240);
-  width: 12vh;
+.normal-button {
+  padding: 5%;
+  height: 2vh;
+}
+
+input {
+  all: unset;
+  font-family:'Courier New', Courier, monospace;
+  background-color: transparent;
   height: 5vh;
-  text-align: center;
+  color: rgb(101, 240, 240);
+  border-bottom-color: rgb(25, 54, 54);
+  border-bottom: solid;
+  text-align:center;
   font-weight: bold;
+}
+
+.wide {
+  width: 50%;
+}
+
+.normal {
+  width: 4ch;
 }
 
 #dialogOverlay {

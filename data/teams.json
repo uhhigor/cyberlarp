@@ -1,0 +1,49 @@
+{
+    "team": [
+        {
+            "id": 1,
+            "name": "Valentinos",
+            "description": "Jesteśmy rodziną, chica. Nic nie jest ważniejsze od rodziny. Może tylko honor. I tradycja. I ładne spluwy. Valentinos trzymają twardą ręką całe Heywood, Glen i Vista del Rey, a gdyby tylko chcieli - połknęliby całe Night City. Latynoski gang w ostatniej połowie wieku rozrósł się dużo bardziej niż wszystkie inne organizacje przestępcze pleniące się w NC. To wszystko dzięki wzajemnej lojalności, bezwzględnej przemocy i sprawnemu zarządzaniu przez don Alexa Malaverde. Wymuszenia, napady z bronią, przerzut aut i ludzi, handel nielegalnym towarem - niewiele jest przestępstw, których Valentinosi z pocałowaniem ręki nie wykonają na polecenie swojego dona, a on jest dla wszystkich jak dobry, choć surowy, ojciec. Są bezczelni, głośni i trudno nie odwrócić za nimi głowy, gdy tylko przechodzą w pobliżu."
+        },
+        {
+            "id": 2,
+            "name": "Maelstorm",
+            "description": "Wybrańcy Chromu. Ogary Szaleństwa. Niezniszczalny Legion. Nikt nie chce stanąć twarzą w twarz z członkiem Maelstormu. Przynajmniej nikt nie uzbrojony. Temu gangowi już jakiś czas temu odbiło na punkcie cyberwszczepów i prędzej szczęśliwi odejdą w ramiona cyberpsychozy niż z nich zrezygnują. Nie jest ich wielu, ale to jedyny gang w Night City, którego niebezpieczeństwo w policyjnych aktach oceniono jako 'ekstremalne'. Handlują nielegalnie pozyskanymi braindance'ami, lekami i (często testowanymi na ludziach) wszczepami. Szybko zyskali sobie na mieście reputację szaleńców, ale uważne oko dostrzeże, że w dla Maelstormu to poza - tak naprawdę zawsze chodzi o interesy"
+        },
+        {
+            "id": 3,
+            "name": "Mercenaries",
+            "description": "Trzy diamenty w moim trzonowcu wystarczą, żeby opłacić pogrzeb i noc picia dla wszystkich. Połączył was ojciec Los i matka Nienawiść-Do-Biedy. No, i jeden, zaufany fixer - Sebastian 'Padre' Ibarra. Night City stoi na ciałach ludzi słabszych od was, zbyt słabych żeby wyrwać się z jego szponów i kolanem przycisnąć jego kark. Jesteście zbieraniną ze wszystkich pięter tego cholernego miasta i Badlandsów, watahą, niepowstrzymaną siłą. Każdy z was ma inną motywację i przeszłość, ale cel macie jeden - zostać najbogatszymi, najdroższymi, najlepszymi najemnikami w Night City. Zapisać się w historii. Móc nazwać własne drinki w Afterlife. Umrzeć tak, by mówili o was tylko bardzo głośno albo przestraszonym szeptem. A najlepiej jeszcze - zrobić to wszystko razem."
+        },
+        {
+            "id": 4,
+            "name": "Cyberpunkowie",
+            "description": "Jesteś nowy w mieście, choomba? Nie ma się z czego cieszyć. Night City jest zepsute. Wszyscy, którzy dożywają tu dorosłości są zepsuci. Psują was media, korporacje, rządy, policyjny reżim, dragi, kredyty. Psuje was Sieć. Braindance'y. Demony. Pewnie już nie ma kogo ratować, nawet wy jesteście zniszczeni, ale zawsze warto próbować. Rozdzieracie to miasto od środka, przejmujecie Sieć, hakujecie wiadomości i policyjne komunikatory, wysadzacie korporacyjne konwoje, opróżniacie konta bankowe, gorącą lufą i chłodnym ostrzem modliszkowym przemawiacie do rozsądku dyrektorom różnych szczebli. Znacie odpowiednich ludzi. Planujecie przestępstwa w najmodniejszych klubach i barach. Po co? Żeby w końcu naprawić to miasto, choć trochę. Albo umrzeć, próbując. Tak wam dopomóż Johny Silverhand."
+        },
+        {
+            "id": 5,
+            "name": "NCPD",
+            "description": "Każdej minuty zgłaszane jest dwanaście poważnych przestępstw. Siedemnaście tysięcy dziennie. Możemy zareagować na sześć procent zgłoszeń. Ty mi powiedz - na które? Bycie psem w Night City to trudna, ale za to beznadziejnie płatna robota. Cywile ich nienawidzą, korporacje wykupują kolejnych funkcjonariuszy, przerzedzając szeregi, a wysoko postawieni politycy regularnie mylą z prywatną ochroną. Do tego na ulicach miasta piekielnie łatwo zarobić kulkę albo piętnaście, a mało kogo poza MaxTac'kiem stać na porządną opiekę medyczną. Gliniarze w przeżartym zbrodnią NC robią brudną robotę, szlifują krawężniki i oglądają rzeczy, których nikt o zdrowych zmysłach nie chce oglądać. A to wszystko - z głupiego poczucia misji. Albo biedactwa i naiwności. Ale nikt o to nigdy nie pyta."
+        },
+        {
+            "id": 6,
+            "name": "Netrunnerzy",
+            "description": "Demony, chyba piłem z nimi kielich... Błagały, żebym dzielił się z nimi... Niektórzy uważają, że można zamienić mięśnie na chrom, mózgi na płyty scalone, a i tak człowiek pozostanie taki sam i będą liczyły się tylko zasady według, których żyje. To kłamstwo. Albo głupota. Albo naiwność. Netrunnerzy to współcześni magowie, pionierzy Sieci, którzy znają jej każdy mroczny zakamarek. Wyposażeni w najnowszy hardware potrafią przedostać się nie tylko za prywatne i korporacyjne zabezpieczenia, ale także za Blackwall - do dzikiej, odgrodzonej przed laty strefy Sieci. Niektórzy pracują dla korporacji albo wywiadu, niektórzy na własną rękę i dla rozrywki rozsadzają rządowe firewalle, niektórzy w ciągach zer i jedynek potrafią zobaczyć przyszłość, przewidzieć apokalipsę, a jeszcze inni są niezrozumianymi geniuszami, sklejającymi w jakiejś zapadłej dziurze nowe, boskie AI. Wszyscy jednak boją się tego samego - cyberpsychozy, odłączenia od Sieci i spalenia decku kognitywnego."
+        },
+        {
+            "id": 7,
+            "name": "Chińska knajpa",
+            "description": "Kaczka w pięciu smakach i może sekrety przemysłowe Kang Tao do tego? Każdy powinien mieć w życiu zaprzyjaźnioną, lokalną chińską knajpę. Tak się po prostu lepiej żyje. Szczególnie, gdy do tego ta knajpa jest przykrywką dla prężnie działającego handlu informacjami. Macie oczy dookoła głowy, potraficie słuchać i wyciągnąć z ludzi zwierzenia - czasem dobrym słowem, czasem sprytnie shackowanym deckiem kognitywnym. Pojawiają się u was różni ludzie, nawet wielkie szychy muszą jeść, a wasz kurczak teryiaki jest wybitny, nawet jeśli mięso, z którego powstaje nigdy nie było żywym zwierzęciem. Radzicie sobie jak możecie. Ufacie - tylko sobie nawzajem, a i to nie zawsze."
+        },
+        {
+            "id": 8,
+            "name": "Polacy",
+            "description": "Nigdy nie zaczynaj bitki - zawsze ją kończ. Chyba, że ktoś poniewiera twoje nazwisko. I nigdy, przenigdy nie słuchaj psów. Jesteście Polakami. To znaczy, tak jakby. Wasze rodziny uciekły z Europy już dawno temu, chyba chodziło o wojnę, ale prawdę mówiąc - trochę nie rozumiecie, co się wtedy działo. Rozumiecie za to, że trzeba szanować orzełka na czerwonym polu, nie można wyrzucać chleba, a nad drzwiami w domu powinien wisieć krzyżyk. No i, że trzeba się słuchać starszych. Night City nie jest łaskawe dla takich, jak wy - poza rodziną i kumplami nie macie wiele. Chwytacie się każdej roboty, czasami niezbyt legalnej - czasami sprzedajecie podróbki Midori czy Kang Tao na targach, a czasami kradniecie auta (albo ich fragmenty - radia sprzedają się zajebiście) i podrzucacie je do opchnięcia zaufanym ludziom. O tym, oczywiście, nie mówicie babci. Przyzwoite z was chłopaki, tylko chcielibyście się dorobić"
+        },
+        {
+            "id": 9,
+            "name": "Korposy",
+            "description": "To nie jest gra o to, kto ma najwięcej zer na koncie, tylko o to za czyje sznruki pociągasz na koniec dnia.Night City jest jak klatka pełna zwierząt i to wy jesteście drapieżnikami. Oglądacie to parszywe miasto z góry, ludzie chcą być wami, chcą być tam gdzie wy. Bezużyteczne śmiecie... Do wszystkiego, co macie, doszliście sami. Nieważne czy wstając godzinę wcześniej i pracując szesnaście godzin, czy odstrzeliwszy odpowiedniego człowieka w odpowiednim momencie. Niektórzy z was doszli do tego wszystkiego urodą. Tak też czasem bywa. Teraz, gdy nie walczycie od eurodolary, walczycie o wpływy - bo tak naprawdę to one są najważniejsze w Night City. Im więcej osób winnych jest wam przysługę, im więcej czuje do was wdzięczność i strach - tym dłużej jesteście bezpieczni i bogaci."
+        }
+    ]
+}

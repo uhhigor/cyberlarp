@@ -5,15 +5,15 @@ block content
         .dialogBox#DBdescription(style="display: none")
                 h2 #{user.characterName}
                 p #{user.description}
-                button(value="closeDialog", class="cyberpunk-button", style="width: 12vh;") X
+                button(value="closeDialog", class="normal-button", style="width: 12vh;") X
         .dialogBox#DBteam(style="display: none")
-                h2 #{user.teamID}
-                p #{user.teamID}
-                button(value="closeDialog", class="cyberpunk-button", style="width: 12vh;") X
+                h2 #{team.name}
+                p #{team.description}
+                button(value="closeDialog", class="normal-button", style="width: 12vh;") X
         .dialogBox#DBstyle(style="display: none")
-                h2 #{user.styleID}
-                p #{user.styleID}
-                button(value="closeDialog", class="cyberpunk-button", style="width: 12vh;") X
+                h2 #{style.name}
+                p #{style.description}
+                button(value="closeDialog", class="normal-button", style="width: 12vh;") X
     .contentBox#CBdata()
         h1 PER
             br 
@@ -26,31 +26,39 @@ block content
                     button(value="DBdescription") #{user.characterName}
             tr
                 td 
-                    button(value="DBteam") #{user.teamID}
+                    button(value="DBteam") #{team.name}
             tr
                 td 
-                    button(value="DBstyle") #{user.styleID}
+                    button(value="DBstyle") #{style.name}
     .contentBox#CBbank(style="display: none")
-        h1 TRAN 
+        h1 TRA 
             br
-            | SFER
-        h2 BALANS: E$ 
-            span#balance 
-        textbox(name="fromAccount", value=user.bankAccount , class="cyberpunk-input")
-        img(src="/images/arrowto.svg")
-        | #
-        textbox(name="toAccount", placeholder="0000", class="cyberpunk-input")
-        br
-        br
-        textbox(name="amount", inputmode="numeric", class="cyberpunk-input")
-        button SEND
+            | NSF
+            br
+            | ER
+        form
+            h2 BALANS: E$ 
+                span#balance 
+            input(type="text" name="fromAccount", value='#{user.bankAccountID}', class="wide", disabled)
+            br
+            br
+            img(src="/images/moneyto.svg", width="10%", height="10%")
+            br
+            br
+            input(type="text", name="toAccount", inputmode="numeric", value="#", class="wide", maxlength=5, id="toAccountInput" oncut="return false;", oncopy="return false;", onpaste="return false;")
+            br
+            br
+            b  E$  
+            input(type="text", name="amount", placeholder="0", maxlength=4, style="text-align:left; width:4ch") 
+            button(class="normal-button", style="margin-left: 12%")#sendMoneyButton SEND
+              
     .contentBox#CBquests(style="display: none")
     #menu 
-        button(class="cyberpunk-button")
-        button(class="cyberpunk-button", value="CBdata")
+        button(class="menu-button")
+        button(class="menu-button", value="CBdata")
             img(src="/images/disk.svg")
-        button(class="cyberpunk-button", value="CBbank")
+        button(class="menu-button", value="CBbank")
             img(src="/images/bank.svg")
-        button(class="cyberpunk-button", value="CBquests")
+        button(class="menu-button", value="CBquests")
             img(src="/images/quests.svg")
-        button(class="cyberpunk-button")
+        button(class="menu-button")

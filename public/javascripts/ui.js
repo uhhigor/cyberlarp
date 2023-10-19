@@ -27,4 +27,14 @@ window.onload = function() {
             }
         })
     }
+
+const input = document.getElementById("toAccountInput");
+let previousValue = "#";
+input.addEventListener("input", function () {
+    if (input.value.length === 0) {
+        input.value = previousValue;
+    } else {
+      previousValue = input.value;
+    }
+  });
 }

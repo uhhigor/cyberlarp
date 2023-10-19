@@ -2,8 +2,10 @@ extends layout
 
 block content
   form(method="POST", action="/", id="loginForm")
-    h1 THE NET 
-    input(type="text", name="login", class="cyberpunk-input", maxlength="6", inputmode="numeric")
+    h1 THE
+      br
+      | NET 
+    input(type="text", name="login", class="wide", maxlength="6", inputmode="numeric", placeholder="000000")
     br
     br
-    input(type="submit", value="LOG IN", class="cyberpunk-button")
+    input(type="submit", value="LOG IN", class="wide")

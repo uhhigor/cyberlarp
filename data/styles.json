@@ -1,0 +1,24 @@
+{
+    "style": [
+        {
+            "id": 1,
+            "name": "Kicz",
+            "description": "'Styl ponad Istotą' - efekciarscy, odważni, bezczelni. Punkowie, uliczni cwaniacy, wściekła młodzież, buntownicy z dobrych domów. Ludzie, którzy zawzięcie wspinają się po drabinie Night City. Rozpędzone samochody i pozłacane spluwy. Chromowane wszczepy i głośna muzyka. Grom z jasnego nieba. Wrzask dzieciaków na koncercie."
+        },
+        {
+            "id": 2,
+            "name": "Neokicz",
+            "description": "'Harmonia Istoty i Stylu' - to, ci którzy dostosowali się do obrzyliwego, współczesnego świata i postawili mu swoje warunki. Ci, którzy wywodzą się z biedoty, a dotarli na sam szczyt. Wpływowi gangsterzy, gwiazdy estrady i braindance'u, ripperdockowie. Kolowe pawie, ekscentrycy. Efekciarscy, zmienni, adaptujący się do nowości. Fani wszczepów i złotych zębów. Pozłacane spluwy i neonowe tatuaże."
+        },
+        {
+            "id": 3,
+            "name": "Neomilitaryzm",
+            "description": "'Istota ponad Stylem' - korposi, najbogatsi ludzie w mieście, rekiny finansjery, politycy. Szczyt drabiny pokarmowej Night City. Ludzie, którzy nigdy nie zaznali biedy, albo wzbogacili się tak bardzo, że już nic z tego nie pamiętają. Elitarność, elegancja, minimalizm i prostota. Brzęk tłuczonego szkła. Rozbrzmiewający w ciszy dźwięk pianina."
+        },
+        {
+            "id": 4,
+            "name": "Entropizm",
+            "description": "'Istota ponad Stylem' - korposi, najbogatsi ludzie w mieście, rekiny finansjery, politycy. Szczyt drabiny pokarmowej Night City. Ludzie, którzy nigdy nie zaznali biedy, albo wzbogacili się tak bardzo, że już nic z tego nie pamiętają. Elitarność, elegancja, minimalizm i prostota. Brzęk tłuczonego szkła. Rozbrzmiewający w ciszy dźwięk pianina."
+        }
+    ]
+}
