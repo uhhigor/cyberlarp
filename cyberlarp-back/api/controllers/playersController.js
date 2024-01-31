@@ -122,6 +122,21 @@ const updatePlayer = async (req, res) => {
     await player.update(req.body);
     res.status(StatusCodes.OK).json(player);
 }
+
+const deletePlayer = async (req, res) => {
+    const player = await Player.findByPk(req.params.id);
+    if(player === null) {
+        const error = new ProblemDocument({
+            title: 'Player not found.',
+            detail: 'Player with given id not found.',
+            instance: req.originalUrl,
+            status: StatusCodes.NOT_FOUND,
+        });
+        return res.status(error.status).json(error);
+    }
+    await player.destroy();
+    res.status(StatusCodes.OK).json();
+}
     
 
 module.exports = {
@@ -129,4 +144,5 @@ module.exports = {
     getPlayerById,
     createPlayer,
     updatePlayer,
+    deletePlayer,
 };
