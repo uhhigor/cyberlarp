@@ -1,52 +1,48 @@
 const { StatusCodes } = require('http-status-codes');
 const { ProblemDocument, ProblemDocumentExtension } = require('http-problem-details');
-const { Player } = require('../db/models');
+const { Style } = require('../db/models');
 
-const getAllPlayers = async (req, res) => {
-    const players = await Player.findAll();
-    if (players.length === 0) {
+const getAllStyles = async (req, res) => {
+    const styles = await Style.findAll();
+    if (styles.length === 0) {
         const error = new ProblemDocument({
-            title: 'No players.',
-            detail: 'No players found.',
+            title: 'No styles.',
+            detail: 'No styles found.',
             instance: req.originalUrl,
             status: StatusCodes.NOT_FOUND,
         });
         return res.status(error.status).json(error);
     }
-    res.status(StatusCodes.OK).json(players);
+    res.status(StatusCodes.OK).json(styles);
 }
 
-const getPlayerById = async (req, res) => {
-    const player = await Player.findByPk(req.params.id);
-    if(player === null) {
+const getStyleById = async (req, res) => {
+    const style = await Style.findByPk(req.params.id);
+    if(style === null) {
         const error = new ProblemDocument({
-            title: 'Player not found.',
-            detail: 'Player with given id not found.',
+            title: 'Style not found.',
+            detail: 'Style with given id not found.',
             instance: req.originalUrl,
             status: StatusCodes.NOT_FOUND,
         });
         return res.status(error.status).json(error);
     }
-    res.status(StatusCodes.OK).json(player);
+    res.status(StatusCodes.OK).json(style);
 }
 
-const createPlayer = async (req, res) => {
+const createStyle = async (req, res) => {
     const validateBody = async (body) => {
         let validationErrors = [];
-        if (!body.password) {
-            validationErrors.push({"name": "password", "reason": "Password is required."})
-        } else {
-            if (body.password.length < 8) {
-                validationErrors.push({"name": "password", "reason": "Password must be at least 8 characters long."})
-            }
-        }
         if (!body.name) {
             validationErrors.push({"name": "name", "reason": "Name is required."})
         } else {
-            Player = await Player.findOne({ where: { name: body.name } });
-            if (Player) {
+            let style = await Style.findOne({ where: { name: body.name } });
+            if (style) {
                 validationErrors.push({"name": "name", "reason": "Name must be unique."})
             }
+        }
+        if (!body.description) {
+            validationErrors.push({"name": "description", "reason": "Description is required."})
         }
         if (validationErrors.length > 0)
         {
@@ -55,7 +51,7 @@ const createPlayer = async (req, res) => {
             });
             const error = new ProblemDocument({
                 title: 'Validation error.',
-                detail: 'Validation error occurred while creating new player.',
+                detail: 'Validation error occurred while creating new style.',
                 instance: req.originalUrl,
                 status: StatusCodes.BAD_REQUEST,
             }, extension);
@@ -68,25 +64,22 @@ const createPlayer = async (req, res) => {
         return res.status(error.status).json(error);
     }
 
-    const player = await Player.create(req.body);
-    res.status(StatusCodes.CREATED).json(player);
+    const style = await Style.create(req.body);
+    res.status(StatusCodes.CREATED).json(style);
 }
 
-const updatePlayer = async (req, res) => {
+const updateStyle = async (req, res) => {
     const validateBody = async (body) => {
         let validationErrors = [];
-        if (body.password && body.password.length < 8) {
-            validationErrors.push({"name": "password", "reason": "Password must be at least 8 characters long."})
-        }
         if (body.name) {
-            let p = await Player.findOne({ where: { name: body.name } });
-            if (p) {
+            let style = await Style.findOne({ where: { name: body.name } });
+            if (style) {
                 validationErrors.push({"name": "name", "reason": "Name must be unique."})
             }
         }
-        let p = await Player.findByPk(req.params.id);
-        if (!p) {
-            validationErrors.push({"name": "id", "reason": "Player with given id not found."})
+        let s = await Style.findByPk(req.params.id);
+        if (!s) {
+            validationErrors.push({"name": "id", "reason": "Style with given id not found."})
         }
         if (validationErrors.length > 0)
         {
@@ -95,7 +88,7 @@ const updatePlayer = async (req, res) => {
             });
             const error = new ProblemDocument({
                 title: 'Validation error.',
-                detail: 'Validation error occurred while updating player.',
+                detail: 'Validation error occurred while updating style.',
                 instance: req.originalUrl,
                 status: StatusCodes.BAD_REQUEST,
             }, extension);
@@ -109,31 +102,31 @@ const updatePlayer = async (req, res) => {
         return res.status(error.status).json(error);
     }
 
-    const player = await Player.findByPk(req.params.id);
-    await player.update(req.body);
-    res.status(StatusCodes.OK).json(player);
+    const style = await Style.findByPk(req.params.id);
+    await style.update(req.body);
+    res.status(StatusCodes.OK).json(style);
 }
 
-const deletePlayer = async (req, res) => {
-    const player = await Player.findByPk(req.params.id);
-    if(player === null) {
+const deleteStyle = async (req, res) => {
+    const style = await Style.findByPk(req.params.id);
+    if(style === null) {
         const error = new ProblemDocument({
-            title: 'Player not found.',
-            detail: 'Player with given id not found.',
+            title: 'Style not found.',
+            detail: 'Style with given id not found.',
             instance: req.originalUrl,
             status: StatusCodes.NOT_FOUND,
         });
         return res.status(error.status).json(error);
     }
-    await player.destroy();
+    await style.destroy();
     res.status(StatusCodes.OK).json();
 }
     
 
 module.exports = {
-    getAllPlayers,
-    getPlayerById,
-    createPlayer,
-    updatePlayer,
-    deletePlayer,
+    getAllStyles,
+    getStyleById,
+    createStyle,
+    updateStyle,
+    deleteStyle,
 };

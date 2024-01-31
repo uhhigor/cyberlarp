@@ -93,6 +93,10 @@ const GigCharacter = sequelize.define('GigCharacter', {
       key: 'id',
     },
   },
+  status: {
+    type: DataTypes.ENUM('ongoing', 'failed', 'completed'),
+    defaultValue: 'ongoing',
+  } ,
 }, {});
 
 Player.hasMany(Character, { as: 'characters' });
