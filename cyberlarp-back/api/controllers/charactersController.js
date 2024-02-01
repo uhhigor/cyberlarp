@@ -4,7 +4,7 @@ const { Character, Player, Faction, Style } = require('../db/models');
 
 const getAllCharacters = async (req, res) => {
     const characters = await Character.findAll();
-    if (players.length === 0) {
+    if (characters.length === 0) {
         const error = new ProblemDocument({
             title: 'No characters.',
             detail: 'No characters found.',
