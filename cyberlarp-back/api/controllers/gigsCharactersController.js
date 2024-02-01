@@ -2,8 +2,24 @@ const { StatusCodes } = require('http-status-codes');
 const { ProblemDocument, ProblemDocumentExtension } = require('http-problem-details');
 const { Gig, Character, GigCharacter } = require('../db/models');
 
+const getAll = async (req, res) => {
+    const gigCharacters = await GigCharacter.findAll();
+    if (gigCharacters.length === 0) {
+        const error = new ProblemDocument({
+            title: 'No gigCharacters.',
+            detail: 'No gigCharacters found.',
+            instance: req.originalUrl,
+            status: StatusCodes.NOT_FOUND,
+        });
+        return res.status(error.status).json(error);
+    }
+    res.status(StatusCodes.OK).json(gigCharacters);
+}
+
 const getAllCharacterGigs = async (req, res) => {
-    const characterGigs = await GigCharacter.findAll({ where: { characterId: req.params.id } });
+    const characterGigs = await GigCharacter.findAll({ 
+        where: { characterId: req.params.id },
+    });
     if (characterGigs.length === 0) {
         const error = new ProblemDocument({
             title: 'No gigs.',
@@ -124,6 +140,7 @@ const deleteGigCharacter = async (req, res) => {
     
 
 module.exports = {
+    getAll,
     getAllCharacterGigs,
     getGigCharacterById,
     assignGigToCharacter,

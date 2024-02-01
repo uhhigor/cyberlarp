@@ -6,32 +6,55 @@
         <h2 class="text-h5 font-weight-bold">Admin Panel</h2>
       </v-col>
       <v-col class="ml-5">
+        <v-snackbar
+          v-model="snackbar"
+          :color="snackbarColor"
+          :timeout="3000">
+          {{ snackbarText }}
+        </v-snackbar>
         <v-card>
         <v-select
           v-model="selected"
           :items="options"
-          label="Show"
-        ></v-select>
+          label="Show">
+        </v-select>
         <v-data-table 
+          :loading="loading"
           :headers="headers"
           :items="tableData"
           :items-per-page="10"
-          class="elevation-1">
+          >
+          <template v-slot:top>
+            <v-toolbar>
+              <v-btn
+              @click="playerFormDialog = true">
+                  <v-icon>mdi-plus</v-icon>
+              </v-btn>
+            </v-toolbar>
+            <v-dialog 
+            v-model="playerFormDialog">
+              <PlayerForm 
+              :editedItem="editedItem"
+              @save="handleSave"
+              @close="handleClose"
+              @snackbar="handleSnackbar"
+              ></PlayerForm>
+            </v-dialog>
+
+          </template>
           <template v-slot:item.actions="{ item }">
-      <v-icon
-        size="small"
-        class="me-2"
-        @click="editItem(item)"
-      >
-        mdi-pencil
-      </v-icon>
-      <v-icon
-        size="small"
-        @click="deleteItem(item)"
-      >
-        mdi-delete
-      </v-icon>
-    </template>
+            <v-icon
+              size="small"
+              class="me-2"
+              @click="editItem(item)">
+              mdi-pencil
+            </v-icon>
+            <v-icon
+              size="small"
+              @click="deleteItem(item)">
+              mdi-delete
+            </v-icon>
+          </template>
         </v-data-table>
 </v-card>
       </v-col>
@@ -41,8 +64,12 @@
 
 
 <script lang="ts">
-import axios from "axios";
+import axios from 'axios';
+import { getPlayers, getCharacters, getFactions, getStyles, getGigs, getCharacterGigs } from './AdminComponents/fetchData.js';
 export default {
+  components: {
+    PlayerForm: () => import('./AdminComponents/Forms/PlayerForm.vue'),
+  },
     data: () => ({
       options: [
         'Players',
@@ -55,117 +82,91 @@ export default {
       selected: 'Players',
       tableData: undefined as any,
       headers: undefined as any,
+      editedItem: {} as any,
+      snackbar: false,
+      snackbarText: '',
+      snackbarColor: '',
+      loading: false,
+      playerFormDialog: false,
     }),
     watch: {
       async selected(newVal) {
-        let data = await this.fetchData(newVal);
-        this.tableData = data;
-        if (data.length > 0) {
-          this.headers = Object.keys(data[0]);
-          this.headers = this.convertHeaders(this.headers);
-        }
+        await this.updateData(newVal);
       }
     },
     async mounted() {
-      let data = await this.fetchData(this.selected);
-        this.tableData = data;
-        if (data.length > 0) {
-          this.headers = Object.keys(data[0]);
-          this.headers = this.convertHeaders(this.headers);
+      await this.updateData(this.selected);
+    },
+    methods: {
+      
+      async handleSave() {
+        await this.updateData(this.selected);
+        this.editedItem = {} as any;
+      },
+      handleClose() {
+        this.playerFormDialog = false;
+        this.editedItem = {} as any;
+      },
+      handleSnackbar(color: string, text: string) {
+        this.snackbarColor = color;
+        this.snackbarText = text;
+        this.snackbar = true;
+      },
+      async updateData(selection: string) {
+        this.loading = true;
+        let data = await this.fetchData(selection);
+          if (data && data.length > 0) {
+            this.tableData = data;
+            this.headers = Object.keys(data[0]);
+            this.tableData.shift();
+            this.headers = this.convertHeaders(this.headers);
+          }
+          this.loading = false;
+      },
+      editItem(item: any) {
+        this.editedItem = item;
+        this.playerFormDialog = true;
+      },
+      async deleteItem(item: any) {
+        try {
+          this.handleSnackbar('info', `Deleting ${item.name} from ${this.selected}`);
+          const response = await axios.delete(`http://localhost:5005/${this.selected.toLowerCase()}/${item.id}`);
+          this.handleSnackbar('success', `Deleted ${item.name} from ${this.selected}`);
+        } catch (error: any) {
+          this.handleSnackbar('error', error.response.data.title + ': ' + error.response.data.detail);
+          console.log(error.response.data)
         }
-  },
-  methods: {
-    editItem(item: any) {
-      console.log(item);
-    },
-    deleteItem(item: any) {
-      console.log(item);
-    },
-    convertHeaders(headers: any) {
-      function capitalizeFirstLetter(str: string) {
-        return str.charAt(0).toUpperCase() + str.slice(1);
-      }
-      let result = [];
-      for (const header of headers) {
-        result.push({'title': capitalizeFirstLetter(header), 'key': header});
-      }
-      result.push({'title': 'Actions', 'key': 'actions'});
-      return result;
-    },
+        await this.updateData(this.selected);
+      },
+      capitalizeFirstLetter(str: string) {
+          return str.charAt(0).toUpperCase() + str.slice(1);
+      },
+      convertHeaders(headers: any) {
+        let result = [];
+        for (const header of headers) {
+          result.push({'title': this.capitalizeFirstLetter(header), 'key': header});
+        }
+        result.push({'title': 'Actions', 'key': 'actions'});
+        return result;
+      },
     async fetchData(option: string) {
       if (option === 'Players') {
-        return await this.getPlayers();
+        return await getPlayers();
     }
     if (option === 'Characters') {
-      return await this.getCharacters();
+      return await getCharacters();
     }
     if (option === 'Factions') {
-      return await this.getFactions();
+      return await getFactions();
     }
     if (option === 'Styles') {
-      return await this.getStyles();
+      return await getStyles();
     }
     if (option === 'Gigs') {
-      return await this.getGigs();
+      return await getGigs();
     }
     if (option === 'Character Gigs') {
-      return await this.getCharacterGigs();
-    }
-  },
-  async getPlayers() {
-    try {
-      const response = await axios.get('http://localhost:5005/players');
-      let result = []
-      for (const player of response.data) {
-        result.push({
-          id: player.id,
-          name: player.name,
-          password: player.password,
-        })
-      }
-      return result;
-  } catch (error) {
-    return [];
-  }
-  },
-  async getCharacters() {
-    try {
-      const response = await axios.get('http://localhost:5005/characters');
-      return response.data;
-    } catch (error) {
-      return [];
-    }
-  },
-  async getFactions() {
-    try {
-      const response = await axios.get('http://localhost:5005/factions');
-      return response.data;
-    } catch (error) {
-      return [];
-    }
-  },
-  async getStyles() {
-    try {
-      const response = await axios.get('http://localhost:5005/styles');
-      return response.data;
-    } catch (error) {
-      return [];
-    }
-  },
-  async getGigs() {
-    try {
-      const response = await axios.get('http://localhost:5005/gigs');
-      return response.data;
-    } catch (error) {
-      return [];
-    }
-  },
-  async getCharacterGigs() {
-    try {
-      const response = await axios.get('http://localhost:5005/character_gigs');
-      return response.data;
-    } catch (error) {
-      return [];
+      return await getCharacterGigs();
     }
   },
 }

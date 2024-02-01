@@ -10,5 +10,7 @@ declare module 'vue' {
     Admin: typeof import('./src/components/Admin.vue')['default']
     copy: typeof import('./src/components/HelloWorld copy.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    PlayerForm: typeof import('./src/components/AdminComponents/Forms/PlayerForm.vue')['default']
+    Store: typeof import('./src/components/AdminComponents/store.vue')['default']
   }
 }

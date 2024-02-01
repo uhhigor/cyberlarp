@@ -1,11 +1,14 @@
 const Router = require('express');
 
-const { getAllCharacterGigs, getGigCharacterById, assignGigToCharacter, updateGigStatus, deleteGigCharacter } = require('../api/controllers/gigsCharactersController');
+const { getAll, getAllCharacterGigs, getGigCharacterById, assignGigToCharacter, updateGigStatus, deleteGigCharacter } = require('../api/controllers/gigsCharactersController');
 
 var router = Router();
 
 // Get all character gigs
-router.get('/', getAllCharacterGigs);
+router.get('/', getAll);
+
+// Get all gigs for character
+router.get('/character/:id', getAllCharacterGigs);
 
 // Get character gig by id
 router.get('/:id', getGigCharacterById);

@@ -11,6 +11,7 @@ const stylesRouter = require('./routes/stylesRouter');
 const gigsCharacterRouter = require('./routes/gigsCharactersRouter');
 const charactersRouter = require('./routes/charactersRouter');
 const factionsRouter = require('./routes/factionsRouter');
+const initDb = require('./api/db/initDb');
 
 var app = express();
 
@@ -20,11 +21,13 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 
+initDb();
+
 app.use('/', indexRouter);
 app.use('/players', playersRouter);
 app.use('/gigs', gigsRouter);
 app.use('/styles', stylesRouter);
-app.use('/gigsCharacter', gigsCharacterRouter);
+app.use('/gigsCharacters', gigsCharacterRouter);
 app.use('/characters', charactersRouter);
 app.use('/factions', factionsRouter);
 

@@ -3,7 +3,7 @@ const { ProblemDocument, ProblemDocumentExtension } = require('http-problem-deta
 const { Character, Player, Faction, Style } = require('../db/models');
 
 const getAllCharacters = async (req, res) => {
-    const characters = await Character.findAll();
+    const characters = await Character.findAll({ include: [Player, Faction, Style]});
     if (characters.length === 0) {
         const error = new ProblemDocument({
             title: 'No characters.',

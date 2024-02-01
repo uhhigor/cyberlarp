@@ -43,8 +43,8 @@ const createPlayer = async (req, res) => {
         if (!body.name) {
             validationErrors.push({"name": "name", "reason": "Name is required."})
         } else {
-            Player = await Player.findOne({ where: { name: body.name } });
-            if (Player) {
+            let p = await Player.findOne({ where: { name: body.name } });
+            if (p) {
                 validationErrors.push({"name": "name", "reason": "Name must be unique."})
             }
         }
@@ -81,7 +81,8 @@ const updatePlayer = async (req, res) => {
         if (body.name) {
             let p = await Player.findOne({ where: { name: body.name } });
             if (p) {
-                validationErrors.push({"name": "name", "reason": "Name must be unique."})
+                if(p.id != req.params.id)
+                    validationErrors.push({"name": "name", "reason": "Name must be unique."})
             }
         }
         let p = await Player.findByPk(req.params.id);

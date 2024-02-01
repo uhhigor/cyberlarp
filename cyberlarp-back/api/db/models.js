@@ -7,8 +7,12 @@ const Player = sequelize.define('Player', {
     primaryKey: true,
     autoIncrement: true,
   },
-  password: DataTypes.STRING,
-  name: DataTypes.STRING,
+  password: {
+    type: DataTypes.STRING, defaultValue: '',
+  },
+  name: {
+    type: DataTypes.STRING, defaultValue: '',
+  },
 }, {});
 
 const Faction = sequelize.define('Faction', {
@@ -17,8 +21,12 @@ const Faction = sequelize.define('Faction', {
     primaryKey: true,
     autoIncrement: true,
   },
-  name: DataTypes.STRING,
-  description: DataTypes.STRING,
+  name: {
+    type: DataTypes.STRING, defaultValue: '',
+  },
+  description: {
+    type: DataTypes.STRING, defaultValue: '',
+  },
 }, {});
 
 const Style = sequelize.define('Style', {
@@ -27,8 +35,12 @@ const Style = sequelize.define('Style', {
     primaryKey: true,
     autoIncrement: true,
   },
-  name: DataTypes.STRING,
-  description: DataTypes.STRING,
+  name: {
+    type: DataTypes.STRING, defaultValue: '',
+  },
+  description: {
+    type: DataTypes.STRING, defaultValue: '',
+  },
 }, {});
 
 const Character = sequelize.define('Character', {
@@ -38,28 +50,18 @@ const Character = sequelize.define('Character', {
     autoIncrement: true,
   },
   user: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER, defaultValue: 0,
     references: {
       model: Player,
       key: 'id',
     },
   },
-  faction: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Faction,
-      key: 'id',
-    },
+  name: {
+    type: DataTypes.STRING, defaultValue: '',
   },
-  style: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Style,
-      key: 'id',
-    },
+  description: {
+    type: DataTypes.STRING, defaultValue: '',
   },
-  name: DataTypes.STRING,
-  description: DataTypes.STRING,
 }, {});
 
 const Gig = sequelize.define('Gig', {
@@ -68,9 +70,15 @@ const Gig = sequelize.define('Gig', {
     primaryKey: true,
     autoIncrement: true,
   },
-  name: DataTypes.STRING,
-  description: DataTypes.STRING,
-  reward: DataTypes.INTEGER,
+  name: {
+    type: DataTypes.STRING, defaultValue: '',
+  },
+  description: {
+    type: DataTypes.STRING, defaultValue: '',
+  },
+  reward: {
+    type: DataTypes.INTEGER, defaultValue: 0,
+  },
 }, {});
 
 const GigCharacter = sequelize.define('GigCharacter', {
@@ -79,24 +87,10 @@ const GigCharacter = sequelize.define('GigCharacter', {
     primaryKey: true,
     autoIncrement: true,
   },
-  gig: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Gig,
-      key: 'id',
-    },
-  },
-  character: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Character,
-      key: 'id',
-    },
-  },
   status: {
-    type: DataTypes.ENUM('ongoing', 'failed', 'completed'),
+    type: DataTypes.ENUM('ongoing', 'completed', 'failed'),
     defaultValue: 'ongoing',
-  } ,
+  },
 }, {});
 
 Player.hasMany(Character, { as: 'characters' });
@@ -110,6 +104,12 @@ Character.belongsTo(Style);
 
 Character.belongsToMany(Gig, { through: GigCharacter });
 Gig.belongsToMany(Character, { through: GigCharacter });
+
+Gig.hasMany(GigCharacter, { as: 'gigCharacters' });
+GigCharacter.belongsTo(Gig);
+
+Character.hasMany(GigCharacter, { as: 'gigCharacters' });
+GigCharacter.belongsTo(Character);
 
 sequelize.sync();
 
