@@ -90,17 +90,17 @@ export default {
       playerFormDialog: false,
     }),
     watch: {
-      async selected(newVal) {
-        await this.updateData(newVal);
+      selected(newVal) {
+        this.updateData(newVal);
       }
     },
-    async mounted() {
-      await this.updateData(this.selected);
+    mounted() {
+      this.updateData(this.selected);
     },
     methods: {
       
       async handleSave() {
-        await this.updateData(this.selected);
+        this.updateData(this.selected);
         this.editedItem = {} as any;
       },
       handleClose() {
@@ -112,10 +112,10 @@ export default {
         this.snackbarText = text;
         this.snackbar = true;
       },
-      async updateData(selection: string) {
+      updateData(selection: string) {
         this.loading = true;
-        let data = await this.fetchData(selection);
-          if (data && data.length > 0) {
+        this.fetchData(selection).then((data) => {
+          if (data.length > 0) {
             this.tableData = data;
             this.headers = Object.keys(data[0]);
             this.headers = this.convertHeaders(this.headers);
@@ -124,23 +124,27 @@ export default {
             this.tableData = [];
             this.headers = [];
           }
+        }).catch((error) => {
+          console.log(error);
+        }).finally(() => {
           this.loading = false;
+        });
       },
       editItem(item: any) {
         this.editedItem = item;
         this.playerFormDialog = true;
       },
-      async deleteItem(item: any) {
-        try {
+      deleteItem(item: any) {
           this.handleSnackbar('info', `Deleting ${item.name} from ${this.selected}`);
-          const response = await axios.delete(`http://localhost:5005/${this.selected.toLowerCase()}/${item.id}`);
-          this.handleSnackbar('success', `Deleted ${item.name} from ${this.selected}`);
-        } catch (error: any) {
-          this.handleSnackbar('error', error.response.data.title + ': ' + error.response.data.detail);
-          console.log(error.response.data)
-        }
-        await this.updateData(this.selected);
-      },
+          axios.delete(`http://localhost:5005/${this.selected.toLowerCase()}/${item.id}`).then(() => {
+            this.handleSnackbar('success', `Deleted ${item.name} from ${this.selected}`);
+          }).catch((error) => {
+            this.handleSnackbar('error', error.response.data.title + ': ' + error.response.data.detail);
+            console.log(error.response.data)
+          }).finally(() => {
+            this.updateData(this.selected);
+          });
+        },
       capitalizeFirstLetter(str: string) {
           return str.charAt(0).toUpperCase() + str.slice(1);
       },
@@ -153,24 +157,20 @@ export default {
         return result;
       },
     async fetchData(option: string) {
-      if (option === 'Players') {
-        return await getPlayers();
-    }
-    if (option === 'Characters') {
-      return await getCharacters();
-    }
-    if (option === 'Factions') {
-      return await getFactions();
-    }
-    if (option === 'Styles') {
-      return await getStyles();
-    }
-    if (option === 'Gigs') {
-      return await getGigs();
-    }
-    if (option === 'Character Gigs') {
-      return await getCharacterGigs();
-    }
+      switch(option) {
+        case 'Players':
+          return await getPlayers();
+        case 'Characters':
+          return await getCharacters();
+        case 'Factions':
+          return await getFactions();
+        case 'Styles':
+          return await getStyles();
+        case 'Gigs':
+          return await getGigs();
+        case 'Character Gigs':
+          return await getCharacterGigs();
+      }
   },
 }
 }
