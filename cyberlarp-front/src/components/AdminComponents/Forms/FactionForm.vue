@@ -7,13 +7,9 @@
             </v-row>
             <v-row>
             <v-text-field
-                v-model="item.password"
-                label="Password"></v-text-field>
-            <v-btn class="ml-5"
-            @click="randomPassword">
-                <v-icon>mdi-dice-5</v-icon>
-            </v-btn>
-        </v-row>
+                v-model="item.description"
+                label="Description"></v-text-field>
+            </v-row>
     </v-col> 
 </template>
   
@@ -26,7 +22,7 @@ export default {
         return {
             item: {
                 name: '', 
-                password: '',
+                description: '',
             },
         }
     },
@@ -45,13 +41,6 @@ export default {
         },
     },
     methods: {
-        randomPassword() {
-            let pass = '';
-            for (let i = 0; i < 8; i++) {
-                pass += (Math.round(Math.random()*10)).toString();
-            }
-            this.item.password = pass;
-        },
     }
 }
 </script>

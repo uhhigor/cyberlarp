@@ -8,9 +8,16 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Admin: typeof import('./src/components/Admin.vue')['default']
-    copy: typeof import('./src/components/HelloWorld copy.vue')['default']
+    CharacterForm: typeof import('./src/components/AdminComponents/Forms/CharacterForm.vue')['default']
+    copy: typeof import('./src/components/AdminComponents/Forms/Gigs copy.vue')['default']
+    FactionForm: typeof import('./src/components/AdminComponents/Forms/FactionForm.vue')['default']
+    FactionsForm: typeof import('./src/components/AdminComponents/Forms/FactionsForm.vue')['default']
+    Form: typeof import('./src/components/AdminComponents/Forms/Form.vue')['default']
+    GigForm: typeof import('./src/components/AdminComponents/Forms/GigForm.vue')['default']
+    Gigs: typeof import('./src/components/AdminComponents/Forms/Gigs.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     PlayerForm: typeof import('./src/components/AdminComponents/Forms/PlayerForm.vue')['default']
     Store: typeof import('./src/components/AdminComponents/store.vue')['default']
+    StyleForm: typeof import('./src/components/AdminComponents/Forms/StyleForm.vue')['default']
   }
 }

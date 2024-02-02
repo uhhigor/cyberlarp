@@ -33,8 +33,8 @@ const getCharacterById = async (req, res) => {
 const createCharacter = async (req, res) => {
     const validateBody = async (body) => {
         let validationErrors = [];
-        if (!body.user) {
-            validationErrors.push({"name": "user", "reason": "User ID is required."})
+        if (!body.player) {
+            validationErrors.push({"name": "player", "reason": "Player ID is required."})
         }
         if (!body.faction) {
             validationErrors.push({"name": "faction", "reason": "Faction ID is required."})
@@ -72,18 +72,24 @@ const createCharacter = async (req, res) => {
     if (error) {
         return res.status(error.status).json(error);
     }
-
-    const character = await Character.create(req.body);
+    const characterBody = {
+        name: req.body.name,
+        description: req.body.description,
+        PlayerId: req.body.player,
+        FactionId: req.body.faction,
+        StyleId: req.body.style,
+    }
+    const character = await Character.create(characterBody);
     res.status(StatusCodes.CREATED).json(character);
 }
 
 const updateCharacter = async (req, res) => {
     const validateBody = async (body) => {
         let validationErrors = [];
-        if (body.user) {
-            let p = await Player.findByPk(body.user);
+        if (body.player) {
+            let p = await Player.findByPk(body.player);
             if (!p) {
-                validationErrors.push({"name": "user", "reason": "Player with given id not found."})
+                validationErrors.push({"name": "player", "reason": "Player with given id not found."})
             }
         }
         if (body.faction) {

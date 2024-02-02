@@ -1,11 +1,9 @@
 <template>
   <v-container class="fill-height">
     <v-row class="align-center justify-center">
-      <v-col cols="3" class="align-center justify-center" >
+      <v-col class="align-center justify-center" >
         <h1 class="text-h3">Cyberlarp</h1>
         <h2 class="text-h5 font-weight-bold">Admin Panel</h2>
-      </v-col>
-      <v-col class="ml-5">
         <v-snackbar
           v-model="snackbar"
           :color="snackbarColor"
@@ -33,12 +31,13 @@
             </v-toolbar>
             <v-dialog 
             v-model="playerFormDialog">
-              <PlayerForm 
+              <Form 
               :editedItem="editedItem"
+              :selected="selected"
               @save="handleSave"
               @close="handleClose"
               @snackbar="handleSnackbar"
-              ></PlayerForm>
+              ></Form>
             </v-dialog>
 
           </template>
@@ -69,6 +68,7 @@ import { getPlayers, getCharacters, getFactions, getStyles, getGigs, getCharacte
 export default {
   components: {
     PlayerForm: () => import('./AdminComponents/Forms/PlayerForm.vue'),
+    Form: () => import('./AdminComponents/Forms/Form.vue'),
   },
     data: () => ({
       options: [
@@ -118,8 +118,11 @@ export default {
           if (data && data.length > 0) {
             this.tableData = data;
             this.headers = Object.keys(data[0]);
-            this.tableData.shift();
             this.headers = this.convertHeaders(this.headers);
+          }
+          else {
+            this.tableData = [];
+            this.headers = [];
           }
           this.loading = false;
       },

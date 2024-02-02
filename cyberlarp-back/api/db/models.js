@@ -49,13 +49,6 @@ const Character = sequelize.define('Character', {
     primaryKey: true,
     autoIncrement: true,
   },
-  user: {
-    type: DataTypes.INTEGER, defaultValue: 0,
-    references: {
-      model: Player,
-      key: 'id',
-    },
-  },
   name: {
     type: DataTypes.STRING, defaultValue: '',
   },
@@ -93,7 +86,7 @@ const GigCharacter = sequelize.define('GigCharacter', {
   },
 }, {});
 
-Player.hasMany(Character, { as: 'characters' });
+Player.hasOne(Character, { as: 'characters' });
 Character.belongsTo(Player);
 
 Faction.hasMany(Character, { as: 'characters' });

@@ -19,11 +19,15 @@ async function getCharacters() {
     try {
     const response = await axios.get('http://localhost:5005/characters');
       let result = []
+      console.log(response.data);
       for (const obj of response.data) {
         result.push({
           id: obj.id,
           name: obj.name,
           description: obj.description,
+          faction: obj.Faction.name,
+          style: obj.Style.name,
+          player: obj.Player.name,
         })
       }
       return result;
